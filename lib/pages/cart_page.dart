@@ -101,7 +101,7 @@ class CartPage extends StatelessWidget {
     }
 
     Widget customBottomNav() {
-      return Container(
+      return SizedBox(
         height: 180,
         child: Column(
           children: [

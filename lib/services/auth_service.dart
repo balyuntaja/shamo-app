@@ -5,7 +5,7 @@ import 'dart:convert';
 
 class AuthService {
   final Logger logger = Logger();
-  String baseUrl = 'http://shamo-backend.test/api';
+  String baseUrl = 'http://10.0.2.2:8000/api';
 
   Future<UserModel> register({
     required String name,
