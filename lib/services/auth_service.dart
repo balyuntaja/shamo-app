@@ -5,7 +5,7 @@ import 'dart:convert';
 
 class AuthService {
   final Logger logger = Logger();
-  String baseUrl = 'http://10.0.2.2:8000/api';
+  String baseUrl = 'https://shamo.balyuntech.my.id/api';
 
   Future<UserModel> register({
     required String name,
@@ -38,6 +38,36 @@ class AuthService {
       return user;
     } else {
       throw Exception('Gagal register: ${response.body}');
+    }
+  }
+
+  Future<UserModel> login({
+    required String email,
+    required String password,
+  }) async {
+    var url = Uri.parse('$baseUrl/login');
+    var headers = {'Content-Type': 'application/json'};
+    var body = jsonEncode({
+      'email': email,
+      'password': password,
+    });
+
+    var response = await http.post(
+      url,
+      headers: headers,
+      body: body,
+    );
+
+    logger.d(response.body);
+
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body)['data'];
+      UserModel user = UserModel.fromJson(data['user']);
+      user.token = 'Bearer ${data['access_token']}';
+
+      return user;
+    } else {
+      throw Exception('Gagal Login: ${response.body}');
     }
   }
 }

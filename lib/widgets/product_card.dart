@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:shamo_app/models/product_model.dart';
 import 'package:shamo_app/theme.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({super.key});
+  final ProductModel product;
+
+  ProductCard({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
