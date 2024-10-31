@@ -5,7 +5,7 @@ import 'package:shamo_app/theme.dart';
 class ProductCard extends StatelessWidget {
   final ProductModel product;
 
-  ProductCard({super.key, required this.product});
+  ProductCard({required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +27,8 @@ class ProductCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(
-              'assets/images/img_shoes.png',
+            Image.network(
+              product.galleries[0].url,
               width: 215,
               height: 150,
               fit: BoxFit.cover,
@@ -41,19 +41,20 @@ class ProductCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Hiking',
+                    product.category.name,
                     style: secondaryTextStyle.copyWith(
                       fontSize: 12,
                     ),
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    'COURT VISION 2.0',
+                    product.name,
                     style: blackTextStyle.copyWith(
                       fontSize: 18,
                       fontWeight: semiBold,
                     ),
                     overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
                   ),
                   const SizedBox(
                     height: 6,
